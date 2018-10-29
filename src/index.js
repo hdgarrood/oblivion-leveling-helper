@@ -1,55 +1,47 @@
-class Square extends React.Component {
-  render() {
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import * as lib from './lib.js';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = lib.newAdvancements();
+  }
+
+  handleClick(skill) {
+    this.setState(lib.advance(this.state, skill));
+  }
+
+  renderSkill(skill) {
+    const advancedBy = this.state[skill];
+    const info = (advancedBy === 0) ? '0' : '+' + advancedBy;
     return (
-      <button className="square">
-        {/* TODO */}
-      </button>
+      <li key={skill}>
+        <span>{skill}: {info}</span>
+        <button onClick={() => this.handleClick(skill)}>Advance</button>
+      </li>
     );
   }
-}
 
-class Board extends React.Component {
-  renderSquare(i) {
-    return <Square />;
+  renderBonuses(bonuses) {
+    return (
+      <ul>
+      {lib.attributes.map((attr) => <li>{attr}: {bonuses[attr]}</li>)}
+      </ul>
+    );
   }
 
   render() {
-    const status = 'Next player: X';
-
     return (
       <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
-    );
-  }
-}
-
-class Game extends React.Component {
-  render() {
-    return (
-      <div className="game">
-        <div className="game-board">
-          <Board />
-        </div>
-        <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
-        </div>
+        <h1>Oblivion leveling helper</h1>
+        <h2>Skill advancements:</h2>
+        <ul>
+          {lib.skills.map((skill) => this.renderSkill(skill.name))}
+        </ul>
+        <h2>Attribute bonuses (if you level up now):</h2>
+        {this.renderBonuses(lib.attributeBonuses(this.state))}
       </div>
     );
   }
@@ -58,7 +50,6 @@ class Game extends React.Component {
 // ========================================
 
 ReactDOM.render(
-  <Game />,
+  <App />,
   document.getElementById('root')
 );
-
