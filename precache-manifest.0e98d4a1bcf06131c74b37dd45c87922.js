@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/oblivion-leveling-helper/static/js/runtime~main.7f00bbb3.js"
   },
   {
-    "revision": "c97c06c4a0c5987d5e66",
-    "url": "/oblivion-leveling-helper/static/js/main.c97c06c4.chunk.js"
+    "revision": "fd9ca98df2de286138e3",
+    "url": "/oblivion-leveling-helper/static/js/main.fd9ca98d.chunk.js"
   },
   {
     "revision": "2b729b2164913af15d2e",
     "url": "/oblivion-leveling-helper/static/js/1.2b729b21.chunk.js"
   },
   {
-    "revision": "c97c06c4a0c5987d5e66",
-    "url": "/oblivion-leveling-helper/static/css/main.2bd5beab.chunk.css"
+    "revision": "fd9ca98df2de286138e3",
+    "url": "/oblivion-leveling-helper/static/css/main.3a2939b9.chunk.css"
   },
   {
-    "revision": "f1adb07fbbe4e43bea2889e3da630575",
+    "revision": "a260739427010acef3871d4a00de12b2",
     "url": "/oblivion-leveling-helper/index.html"
   }
 ];
