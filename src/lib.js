@@ -9,7 +9,7 @@ export const attributes =
     'Personality',
     'Luck' ]
 
-export const skills =
+const skillAttributes =
   [ { name: 'Blade', attr: 'Strength' },
     { name: 'Blunt', attr: 'Strength' },
     { name: 'Hand-to-Hand', attr: 'Strength' },
@@ -32,15 +32,17 @@ export const skills =
     { name: 'Speechcraft', attr: 'Personality' },
     { name: 'Illusion', attr: 'Personality' } ]
 
+export const skills = skillAttributes.map((x) => x.name);
+
 export function getGoverningAttribute(name) {
-  const skill = skills.find((el) => el.name === name);
+  const skill = skillAttributes.find((x) => x.name === name);
   return skill ? skill.attr : null;
 }
 
 export function newAdvancements() {
   const advancements = {};
   skills.forEach((skill) => {
-    advancements[skill.name] = 0;
+    advancements[skill] = 0;
   });
   return advancements;
 }
@@ -70,12 +72,17 @@ export function attributeBonuses(advancements) {
   const bonuses = {};
   attributes.forEach((attr) => {
     const governedSkills =
-      skills.filter((skill) => skill.attr === attr).map((skill) => skill.name);
+      skillAttributes
+        .filter((skill) => skill.attr === attr)
+        .map((skill) => skill.name);
     let totalAdvancements = 0;
     governedSkills.forEach((skill) => {
       totalAdvancements += advancements[skill];
     });
-    bonuses[attr] = attributeBonus(totalAdvancements);
+    bonuses[attr] = {
+      total: totalAdvancements,
+      bonus: attributeBonus(totalAdvancements),
+    };
   });
   return bonuses;
 }
