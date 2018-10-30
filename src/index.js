@@ -18,17 +18,10 @@ class App extends React.Component {
     const info = (advancedBy === 0) ? '0' : '+' + advancedBy;
     return (
       <li key={skill}>
-        <span>{skill}: {info}</span>
+        <span className="skill-name">{skill}</span>
+        <span className="skill-levels">{info}</span>
         <button onClick={() => this.handleClick(skill)}>Advance</button>
       </li>
-    );
-  }
-
-  renderBonuses(bonuses) {
-    return (
-      <ul className="attributes">
-      {lib.attributes.map((attr) => <li key={attr}>{attr}: {bonuses[attr].bonus}</li>)}
-      </ul>
     );
   }
 
@@ -38,25 +31,28 @@ class App extends React.Component {
 
   renderAttribute(attr) {
     const bonus = this.getBonusFor(attr);
-    return (
-      <li key={"attr-" + attr} className="attr">
-        <div className="attr-header">{attr}:
-          <span className="bonus">+{bonus.bonus}</span>
-        </div>
-        <div className="attr-body">
-          <ul className="skills">
-            {lib.skillsGovernedBy(attr).map((skill) => this.renderSkill(skill))}
-          </ul>
-        </div>
-      </li>
-    );
+    if (attr === 'Luck') {
+      return;
+    } else {
+      return (
+        <li key={"attr-" + attr} className="attr">
+          <div className="attr-header">{attr}
+            <span className="bonus">+{bonus.bonus}</span>
+          </div>
+          <div className="attr-body">
+            <ul className="skills">
+              {lib.skillsGovernedBy(attr).map((skill) => this.renderSkill(skill))}
+            </ul>
+          </div>
+        </li>
+      );
+    }
   }
 
   render() {
     return (
       <div>
         <h1>Oblivion leveling helper</h1>
-        <h2>Skill advancements:</h2>
         <ul className="attributes">
           {lib.attributes.map((attr) => this.renderAttribute(attr))}
         </ul>
