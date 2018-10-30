@@ -1,0 +1,34 @@
+@import './normalize.css';
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  background-color: #cdd;
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
+}
+
+body {
+  background-color: black;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  clear: both;
+  height: 35px;
+  line-height: 35px;
+  margin: 0;
+}
+
+li button {
+  height: 100%;
+  float: right;
+}

@@ -26,8 +26,8 @@ class App extends React.Component {
 
   renderBonuses(bonuses) {
     return (
-      <ul>
-      {lib.attributes.map((attr) => <li>{attr}: {bonuses[attr]}</li>)}
+      <ul className="attributes">
+      {lib.attributes.map((attr) => <li key={attr}>{attr}: {bonuses[attr]}</li>)}
       </ul>
     );
   }
@@ -37,7 +37,7 @@ class App extends React.Component {
       <div>
         <h1>Oblivion leveling helper</h1>
         <h2>Skill advancements:</h2>
-        <ul>
+        <ul className="skills">
           {lib.skills.map((skill) => this.renderSkill(skill.name))}
         </ul>
         <h2>Attribute bonuses (if you level up now):</h2>
