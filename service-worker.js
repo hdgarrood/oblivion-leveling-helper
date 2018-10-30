@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/oblivion-leveling-helper/precache-manifest.0e98d4a1bcf06131c74b37dd45c87922.js"
+  "/oblivion-leveling-helper/precache-manifest.cb74697357480493486bedeee10fabe2.js"
 );
 
 workbox.clientsClaim();
