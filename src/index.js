@@ -32,16 +32,34 @@ class App extends React.Component {
     );
   }
 
+  getBonusFor(attr) {
+    return lib.attributeBonus(this.state, attr);
+  }
+
+  renderAttribute(attr) {
+    const bonus = this.getBonusFor(attr);
+    return (
+      <li key={"attr-" + attr} className="attr">
+        <div className="attr-header">{attr}:
+          <span className="bonus">+{bonus.bonus}</span>
+        </div>
+        <div className="attr-body">
+          <ul className="skills">
+            {lib.skillsGovernedBy(attr).map((skill) => this.renderSkill(skill))}
+          </ul>
+        </div>
+      </li>
+    );
+  }
+
   render() {
     return (
       <div>
         <h1>Oblivion leveling helper</h1>
         <h2>Skill advancements:</h2>
-        <ul className="skills">
-          {lib.skills.map((skill) => this.renderSkill(skill))}
+        <ul className="attributes">
+          {lib.attributes.map((attr) => this.renderAttribute(attr))}
         </ul>
-        <h2>Attribute bonuses (if you level up now):</h2>
-        {this.renderBonuses(lib.attributeBonuses(this.state))}
       </div>
     );
   }

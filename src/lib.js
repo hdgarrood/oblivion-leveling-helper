@@ -34,9 +34,15 @@ const skillAttributes =
 
 export const skills = skillAttributes.map((x) => x.name);
 
-export function getGoverningAttribute(name) {
-  const skill = skillAttributes.find((x) => x.name === name);
-  return skill ? skill.attr : null;
+export function getGoverningAttribute(skill) {
+  const x = skillAttributes.find((x) => x.name === skill);
+  return x ? x.attr : null;
+}
+
+export function skillsGovernedBy(attr) {
+  return skillAttributes
+      .filter((x) => x.attr === attr)
+      .map((x) => x.name);
 }
 
 export function newAdvancements() {
@@ -54,7 +60,7 @@ export function advance(advancements, skill) {
   return newAdvancements;
 }
 
-export function attributeBonus(x) {
+export function bonusFromLevels(x) {
   if (x <= 0) {
     return 1;
   } else if (x <= 4) {
@@ -68,21 +74,13 @@ export function attributeBonus(x) {
   }
 }
 
-export function attributeBonuses(advancements) {
-  const bonuses = {};
-  attributes.forEach((attr) => {
-    const governedSkills =
-      skillAttributes
-        .filter((skill) => skill.attr === attr)
-        .map((skill) => skill.name);
-    let totalAdvancements = 0;
-    governedSkills.forEach((skill) => {
-      totalAdvancements += advancements[skill];
-    });
-    bonuses[attr] = {
-      total: totalAdvancements,
-      bonus: attributeBonus(totalAdvancements),
-    };
+export function attributeBonus(advancements, attr) {
+  let totalAdvancements = 0;
+  skillsGovernedBy(attr).forEach((skill) => {
+    totalAdvancements += advancements[skill];
   });
-  return bonuses;
+  return {
+    total: totalAdvancements,
+    bonus: bonusFromLevels(totalAdvancements),
+  };
 }
