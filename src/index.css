@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: 'Muli', sans-serif;
+  background-color: black;
+}
+
 #root {
   background-color: #cdd;
   width: 350px;
@@ -12,8 +17,15 @@
   padding: 1em;
 }
 
-body {
-  background-color: black;
+h1, .attr-header .attr-name {
+  font-family: 'Fondamento';
+  font-weight: 400;
+  font-style: italic;
+}
+
+.attr-header {
+  font-size: 140%;
+  border-bottom: 1px dashed rgba(0,0,0,0.4);
 }
 
 ul {
@@ -26,18 +38,22 @@ ul {
   background-color: rgba(255,255,255,0.3);
 }
 
-.attr .bonus {
-  float: right;
+.attr-header {
+  display: flex;
+  padding: 0.1em;
 }
 
-.attr-header {
-  font-size: 120%;
-  padding: 0.1em;
-  clear: both;
+.attr-header .attr-name {
+  padding-left: 0.1em;
+  flex-grow: 1;
+}
+
+.attr-header .attr-bonus {
+  padding-right: 0.5em;
 }
 
 .attr-body {
-  padding: 0.5em;
+  padding: 0.25em 0.5em 0.5em 0.5em;
 }
 
 ul.skills li {
@@ -53,8 +69,4 @@ ul.skills li .skill-name {
 
 ul.skills li .skill-levels {
   padding-right: 1em;
-}
-
-ul.skills button {
-  height: 100%;
 }

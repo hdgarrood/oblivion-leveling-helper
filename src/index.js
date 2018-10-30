@@ -36,8 +36,9 @@ class App extends React.Component {
     } else {
       return (
         <li key={"attr-" + attr} className="attr">
-          <div className="attr-header">{attr}
-            <span className="bonus">+{bonus.bonus}</span>
+          <div className="attr-header">
+            <span className="attr-name">{attr}</span>
+            <span className="attr-bonus">+{bonus.bonus}</span>
           </div>
           <div className="attr-body">
             <ul className="skills">
