@@ -10,7 +10,7 @@ class App extends React.Component {
   }
 
   handleClick(skill) {
-    this.setState(lib.advance(this.state, skill));
+    this.setState((state, props) => lib.advance(state, skill));
   }
 
   renderSkill(skill) {
