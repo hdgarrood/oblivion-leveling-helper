@@ -6,11 +6,27 @@ import * as lib from './lib.js';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = lib.newAdvancements();
+    this.state = this.readStateFromLocalStorage() || lib.newAdvancements();
   }
 
   handleClick(skill) {
     this.setState((state, props) => lib.advance(state, skill));
+  }
+
+  handleReset() {
+    this.setState(lib.newAdvancements());
+  }
+
+  readStateFromLocalStorage() {
+    return JSON.parse(window.localStorage.getItem('advancements'));
+  }
+
+  saveStateToLocalStorage() {
+    window.localStorage.setItem('advancements', JSON.stringify(this.state));
+  }
+
+  componentDidUpdate() {
+    this.saveStateToLocalStorage();
   }
 
   renderSkill(skill) {
@@ -57,6 +73,9 @@ class App extends React.Component {
         <ul className="attributes">
           {lib.attributes.map((attr) => this.renderAttribute(attr))}
         </ul>
+        <div className="extra-controls">
+          <button onClick={() => this.handleReset()}>Reset</button>
+        </div>
       </div>
     );
   }
