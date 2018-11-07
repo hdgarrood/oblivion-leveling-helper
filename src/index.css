@@ -48,6 +48,14 @@ ul {
   flex-grow: 1;
 }
 
+.attr-header .expand-arrow {
+  padding-right: 0.5em;
+}
+
+.expand-arrow:hover {
+  cursor: pointer;
+}
+
 .attr-header .attr-bonus {
   padding-right: 0.5em;
 }
