@@ -34,7 +34,7 @@ class App extends React.Component {
   }
 
   handleReset() {
-    this.setState(this.initialState());
+    this.setState({ advancements: lib.newAdvancements() });
   }
 
   readStateFromLocalStorage() {
